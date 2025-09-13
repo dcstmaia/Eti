@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="tet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola CAFE Maliana - Rejistu no Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: #004aad;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+
+        .welcome-section h2 {
+            font-size: 36px;
+            color: #004aad;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .welcome-section p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-login {
+            background-color: #004aad;
+            color: white;
+        }
+
+        .btn-register {
+            background-color: white;
+            color: #004aad;
+            border: 2px solid #004aad;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-login:hover {
+            background-color: #003a87;
+        }
+
+        .btn-register:hover {
+            background-color: #f0f5ff;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-title {
+            text-align: center;
+            color: #004aad;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #444;
+            font-size: 16px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #004aad;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.2);
+        }
+
+        .course-description {
+            background-color: #f0f5ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #004aad;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .btn-submit {
+            background-color: #004aad;
+            color: white;
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .btn-submit:hover {
+            background-color: #003a87;
+        }
+
+        .back-btn {
+            background-color: #f0f0f0;
+            color: #333;
+            width: 100%;
+            padding: 16px;
+            font-size: 18px;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .error-message {
+            color: #d9534f;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8d7da;
+            border-radius: 8px;
+            display: none;
+            font-size: 16px;
+        }
+
+        .success-message {
+            color: #28a745;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            border-radius: 8px;
+            display: none;
+            font-size: 16px;
+        }
+
+        .data-container {
+            background-color: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 0 auto;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .data-title {
+            text-align: center;
+            color: #004aad;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .student-card {
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #004aad;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .student-card h3 {
+            color: #004aad;
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .student-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            display: block;
+            border: 3px solid #004aad;
+        }
+
+        .student-info {
+            margin-bottom: 12px;
+            display: flex;
+        }
+
+        .student-info .label {
+            font-weight: 600;
+            min-width: 120px;
+            color: #555;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 6px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .delete-btn:hover {
+            background-color: #c9302c;
+        }
+
+        .logout-btn {
+            background-color: #d9534f;
+            color: white;
+            padding: 15px 30px;
+            margin: 30px auto 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background-color: #c9302c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .counter {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 25px;
+            color: #666;
+            font-size: 15px;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .photo-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .photo-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #004aad;
+            object-fit: cover;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .file-input-label {
+            background-color: #004aad;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .file-input-label:hover {
+            background-color: #003a87;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .form-container, .data-container {
+                padding: 25px;
+            }
+            
+            .welcome-section h2 {
+                font-size: 28px;
+            }
+            
+            .students-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .logo-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .welcome-section h2 {
+                font-size: 24px;
+            }
+            
+            .welcome-section p {
+                font-size: 16px;
+            }
+            
+            .form-container, .data-container {
+                padding: 20px;
+            }
+            
+            .form-title, .data-title {
+                font-size: 24px;
+            }
+            
+            .btn {
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="cafe.jpg" alt="Logo Escola CAFE Maliana" class="logo-img">
+                <h1>Escola CAFE Maliana</h1>
+            </div>
+        </header>
+
+        <section class="welcome-section">
+            <h2>Benvindu ba Sistema Rejistu Online</h2>
+            <p>Escola CAFE Maliana oferese edukasaun kualidade ba imi sira hotu. Favor rejistu online ka login hodi asesu informasaun. Ita boot sei hetak oportunidade atu dezenvolve konhesimentu no habilidades iha area sira ne'ebé ita boot hakarak.</p>
+        </section>
+
+        <div class="button-container">
+            <button class="btn btn-login" id="showLogin">
+                <i class="fas fa-sign-in-alt"></i>Login
+            </button>
+            <button class="btn btn-register" id="showRegister">
+                <i class="fas fa-user-plus"></i>Rejistu
+            </button>
+        </div>
+
+        <!-- Formuláriu Rejistu -->
+        <div class="form-container" id="registerForm">
+            <h2 class="form-title"><i class="fas fa-user-graduate"></i> Formuláriu Rejistu</h2>
+            
+            <div class="counter" id="studentCounter">
+                Total Estudante Rejistadu: 0/100
+            </div>
+            
+            <div class="photo-upload">
+                <img id="photoPreview" class="photo-preview" alt="Preview Foto">
+                <label for="photo" class="file-input-label">
+                    <i class="fas fa-camera"></i> Hili Foto
+                </label>
+                <input type="file" id="photo" accept="image/*" style="display: none;">
+                <div id="photoError" class="error-message" style="display: none; margin-top: 10px;">
+                    <i class="fas fa-exclamation-circle"></i> Favor upload foto ho tamanhu menus 500KB.
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="course"><i class="fas fa-book"></i> Hili Kursu:</label>
+                <select id="course" onchange="showCourseDescription()">
+                    <option value="">Favor hili kursu...</option>
+                    <option value="ct"> (Ciéncias Tecnologia / CT)</option>
+                    <option value="csh"> (Ciéncia Social e Humamidade  / CSH)</option>
+                </select>
+            </div>
+            
+            <div id="courseDescription" class="course-description">
+                <i class="fas fa-info-circle"></i> Favor hili kursu ida atu haree deskrisaun.
+            </div>
+            
+            <div class="form-group">
+                <label for="fullname"><i class="fas fa-user"></i> Naran Completu:</label>
+                <input type="text" id="fullname" placeholder="Liu naran ho lettra boot iha inísiu">
+            </div>
+            
+            <div class="form-group">
+                <label for="address"><i class="fas fa-home"></i> Lugár Residensia:</label>
+                <input type="text" id="address" placeholder="Súb-distritu, postu administrativu, no distritu">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone"></i> Numeru Telefóni:</label>
+                <input type="tel" id="phone" placeholder="Ex: 7XX XXXXXX">
+            </div>
+            
+            <div class="form-group">
+                <label for="emis"><i class="fas fa-id-card"></i> Numeru EMIS / Estudante:</label>
+                <input type="text" id="emis" placeholder="Numeru EMIS ka estudante">
+            </div>
+            
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email (opcional):</label>
+                <input type="email" id="email" placeholder="exemplu@email.com">
+            </div>
+            
+            <button class="btn btn-submit" onclick="registerStudent()">
+                <i class="fas fa-paper-plane"></i> Submete Rejistu
+            </button>
+            <button class="back-btn" onclick="showMainMenu()">
+                <i class="fas fa-arrow-left"></i> Fila ba Menu Principal
+            </button>
+            
+            <div class="success-message" id="registerSuccess">
+                <i class="fas fa-check-circle"></i> Rejistu completes ho susesu! Ita boot agora bele login.
+            </div>
+            
+            <div class="error-message" id="registerError">
+                <i class="fas fa-exclamation-circle"></i> Favor prence todos espasu ho informasaun loos.
+            </div>
+            
+            <div class="error-message" id="limitError">
+                <i class="fas fa-exclamation-circle"></i> Deskulpa! Limitre estudante (100) already taka ona. La bele rejistu tan.
+            </div>
+        </div>
+
+        <!-- Formuláriu Login -->
+        <div class="form-container" id="loginForm">
+            <h2 class="form-title"><i class="fas fa-sign-in-alt"></i> Formuláriu Login</h2>
+            
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password:</label>
+                <input type="password" id="password" placeholder="Hatama (Password)">
+            </div>
+            
+            <button class="btn btn-submit" onclick="login()">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <button class="back-btn" onclick="showMainMenu()">
+                <i class="fas fa-arrow-left"></i> Fila ba Menu Principal
+            </button>
+            
+            <div class="error-message" id="loginError">
+                <i class="fas fa-exclamation-circle"></i> Password la loos. Favor verifica.
+            </div>
+        </div>
+
+        <!-- Data Estudante Sira -->
+        <div class="data-container" id="studentData">
+            <h2 class="data-title"><i class="fas fa-users"></i> Data Estudante Sira</h2>
+            
+            <div class="counter" id="dataCounter">
+                Total Estudante: 0
+            </div>
+            
+            <div class="students-grid" id="studentsGrid">
+                <!-- Data estudante sira ne'e sei prence husi JavaScript -->
+            </div>
+            
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Escola CAFE Maliana. Direitu hotu reservadu.</p>
+            <p>Kontaktu: +670 76730208 | Genjiro, Ledi | Maliana, Bobonaro, Timor-Leste</p>
+        </div>
+    </footer>
+
+    <script>
+        // Maximum number of students
+        const MAX_STUDENTS = 100;
+        let photoData = null;
+        
+        // Função atu hatudu deskrisaun kursu
+        function showCourseDescription() {
+            const courseSelect = document.getElementById('course');
+            const descriptionDiv = document.getElementById('courseDescription');
+            
+            if (courseSelect.value === 'ct') {
+                descriptionDiv.innerHTML = '<i class="fas fa-info-circle"></i> <strong>IPA (Ciencias Naturais / CT)</strong>: Foka ba Matemátika, Biologia, Química, no Física. Prepara estudante sira atu kontinua estudu iha área sira hanesan medisina, engenharia, siénsia, no relasiona siénsia.';
+            } else if (courseSelect.value === 'csh') {
+                descriptionDiv.innerHTML = '<i class="fas fa-info-circle"></i> <strong>IPS (Ciencias Sozial / CSH)</strong>: Foka ba História, Geografía, Economia, no Sosiolojia. Prepara estudante sira atu kontinua estudu iha área sira hanesan direitu, relasaun internasionál, administrasaun, no ekonómia.';
+            } else {
+                descriptionDiv.innerHTML = '<i class="fas fa-info-circle"></i> Favor hili kursu ida atu haree deskrisaun.';
+            }
+        }
+        
+        // Função atu upload foto
+        document.getElementById('photo').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('photoPreview');
+            const errorDiv = document.getElementById('photoError');
+            
+            if (file) {
+                // Check file size (max 500KB)
+                if (file.size > 500 * 1024) {
+                    errorDiv.style.display = 'block';
+                    photoData = null;
+                    preview.style.display = 'none';
+                    return;
+                }
+                
+                errorDiv.style.display = 'none';
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    photoData = e.target.result;
+                    preview.src = photoData;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                photoData = null;
+                preview.style.display = 'none';
+            }
+        });
+        
+        // Função atu atualiza kontador estudante
+        function updateStudentCounter() {
+            const students = JSON.parse(localStorage.getItem('students')) || [];
+            document.getElementById('studentCounter').textContent = `Total Estudante Rejistadu: ${students.length}/${MAX_STUDENTS}`;
+            document.getElementById('dataCounter').textContent = `Total Estudante: ${students.length}`;
+            
+            // Se estudante sira already too many, disable rejistu
+            if (students.length >= MAX_STUDENTS) {
+                document.getElementById('limitError').style.display = 'block';
+                document.querySelector('.btn-submit').disabled = true;
+                document.querySelector('.btn-submit').style.opacity = '0.6';
+                document.querySelector('.btn-submit').style.cursor = 'not-allowed';
+            } else {
+                document.getElementById('limitError').style.display = 'none';
+                document.querySelector('.btn-submit').disabled = false;
+                document.querySelector('.btn-submit').style.opacity = '1';
+                document.querySelector('.btn-submit').style.cursor = 'pointer';
+            }
+        }
+
+        // Função atu rejistu estudante foun
+        function registerStudent() {
+            const fullname = document.getElementById('fullname').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const emis = document.getElementById('emis').value;
+            const course = document.getElementById('course').value;
+            const email = document.getElementById('email').value;
+            
+            // Verifikasaun ba input
+            if (!fullname || !address || !phone || !emis || !course) {
+                document.getElementById('registerError').style.display = 'block';
+                document.getElementById('registerSuccess').style.display = 'none';
+                document.getElementById('limitError').style.display = 'none';
+                return;
+            }
+            
+            // Check student limit
+            let students = JSON.parse(localStorage.getItem('students')) || [];
+            if (students.length >= MAX_STUDENTS) {
+                document.getElementById('limitError').style.display = 'block';
+                document.getElementById('registerError').style.display = 'none';
+                document.getElementById('registerSuccess').style.display = 'none';
+                return;
+            }
+            
+            // Kria objetu estudante
+            const student = {
+                id: Date.now(), // ID uniku
+                fullname: fullname,
+                address: address,
+                phone: phone,
+                emis: emis,
+                course: course === 'ct' ? 'IPA (Ciencias Naturais / CT)' : 'IPS (Ciencias Sozial / CSH)',
+                email: email || 'La iha',
+                registrationDate: new Date().toLocaleDateString('tet'),
+                photo: photoData || 'https://placehold.co/100x100/004aad/FFFFFF?text=EC'
+            };
+            
+            // Haruka data ba localStorage
+            students.push(student);
+            localStorage.setItem('students', JSON.stringify(students));
+            
+            // Atualiza kontador
+            updateStudentCounter();
+            
+            // Hamosuk mensajen susesu
+            document.getElementById('registerSuccess').style.display = 'block';
+            document.getElementById('registerError').style.display = 'none';
+            document.getElementById('limitError').style.display = 'none';
+            
+            // Reset formuláriu
+            document.getElementById('fullname').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('emis').value = '';
+            document.getElementById('course').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('photo').value = '';
+            document.getElementById('photoPreview').style.display = 'none';
+            document.getElementById('courseDescription').innerHTML = '<i class="fas fa-info-circle"></i> Favor hili kursu ida atu haree deskrisaun.';
+            photoData = null;
+            
+            // Auto-hamutuk formuláriu depois de segundu 2
+            setTimeout(() => {
+                document.getElementById('registerSuccess').style.display = 'none';
+                showMainMenu();
+            }, 2000);
+        }
+
+        // Função atu login
+        function login() {
+            const password = document.getElementById('password').value;
+            
+            // Verifikasaun password (iha kazu ne'e password mak "071206")
+            if (password === '071206') {
+                // Simula login susesu
+                document.getElementById('loginError').style.display = 'none';
+                
+                // Hamosuk data estudante sira
+                displayStudentData();
+                
+                // Hamosuk área data, submete formuláriu login
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('studentData').style.display = 'block';
+            } else {
+                // Hamosuk erro
+                document.getElementById('loginError').style.display = 'block';
+            }
+        }
+
+        // Função atu hamoos estudante
+        function deleteStudent(studentId) {
+            if (confirm("Ita boot certeza hakarak hamoos estudante ida ne'e?")) {
+                let students = JSON.parse(localStorage.getItem('students')) || [];
+                
+                // Hamoos estudante husi lista
+                students = students.filter(student => student.id !== studentId);
+                
+                // Atualiza lista estudante sira
+                localStorage.setItem('students', JSON.stringify(students));
+                
+                // Atualiza display estudante sira
+                displayStudentData();
+                
+                // Atualiza kontador
+                updateStudentCounter();
+            }
+        }
+
+        // Função atu hatudu data estudante sira
+        function displayStudentData() {
+            const students = JSON.parse(localStorage.getItem('students')) || [];
+            const gridContainer = document.getElementById('studentsGrid');
+            
+            // Atualiza kontador
+            updateStudentCounter();
+            
+            // Reset grid
+            gridContainer.innerHTML = '';
+            
+            // Popula grid ho data estudante
+            students.forEach((student, index) => {
+                const card = document.createElement('div');
+                card.className = 'student-card';
+                card.innerHTML = `
+                    <button class="delete-btn" onclick="deleteStudent(${student.id})" title="Hamoos Estudante">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <img src="${student.photo}" alt="Foto ${student.fullname}" class="student-photo">
+                    <h3>Estudante #${index + 1}</h3>
+                    <div class="student-info">
+                        <span class="label">Naran:</span>
+                        <span>${student.fullname}</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="label">Kursu:</span>
+                        <span>${student.course}</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="label">Lugár:</span>
+                        <span>${student.address}</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="label">Telefóni:</span>
+                        <span>${student.phone}</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="label">Email:</span>
+                        <span>${student.email}</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="label">EMIS:</span>
+                        <span>${student.emis}</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="label">Data Rejistu:</span>
+                        <span>${student.registrationDate}</span>
+                    </div>
+                `;
+                gridContainer.appendChild(card);
+            });
+            
+            // Mensajem bainhira la iha estudante
+            if (students.length === 0) {
+                gridContainer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 30px; color: #666;">
+                        <i class="fas fa-users" style="font-size: 50px; margin-bottom: 15px;"></i>
+                        <h3>La iha Estudante Rejistadu</h3>
+                        <p>Favor rejistu estudante foun iha menu principal.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Função atu logout
+        function logout() {
+            document.getElementById('studentData').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'none';
+            document.querySelector('.button-container').style.display = 'flex';
+            document.querySelector('.welcome-section').style.display = 'block';
+            
+            // Reset formuláriu login
+            document.getElementById('password').value = '';
+        }
+
+        // Função atu fila ba menu prinsipal
+        function showMainMenu() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('studentData').style.display = 'none';
+            document.querySelector('.button-container').style.display = 'flex';
+            document.querySelector('.welcome-section').style.display = 'block';
+            
+            // Reset mensajen sira
+            document.getElementById('registerSuccess').style.display = 'none';
+            document.getElementById('registerError').style.display = 'none';
+            document.getElementById('loginError').style.display = 'none';
+            document.getElementById('limitError').style.display = 'none';
+            
+            // Atualiza kontador
+            updateStudentCounter();
+        }
+
+        // Event listeners ba butaun sira
+        document.getElementById('showLogin').addEventListener('click', function() {
+            document.querySelector('.button-container').style.display = 'none';
+            document.querySelector('.welcome-section').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        });
+
+        document.getElementById('showRegister').addEventListener('click', function() {
+            document.querySelector('.button-container').style.display = 'none';
+            document.querySelector('.welcome-section').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            
+            // Atualiza kontador estudante
+            updateStudentCounter();
+        });
+
+        // Inisializasaun - verifika se iha data tiha ona iha localStorage
+        window.onload = function() {
+            if (!localStorage.getItem('students')) {
+                // Data dummy ba demonstrasaun
+                const demoStudents = [
+                    {
+                        id: 1,
+                        fullname: 'Maria de Jesus',
+                        address: 'Maliana, Bobonaro',
+                        phone: '77234567',
+                        emis: 'EMIS12345',
+                        course: 'IPA (Ciencias Naturais / CT)',
+                        email: 'maria@email.com',
+                        registrationDate: '12/05/2023',
+                        photo: 'https://placehold.co/100x100/004aad/FFFFFF?text=M'
+                    },
+                    {
+                        id: 2,
+                        fullname: 'João dos Santos',
+                        address: 'Atabae, Bobonaro',
+                        phone: '77345678',
+                        emis: 'EMIS67890',
+                        course: 'IPS (Ciencias Sozial / CSH)',
+                        email: 'joao@email.com',
+                        registrationDate: '15/05/2023',
+                        photo: 'https://placehold.co/100x100/004aad/FFFFFF?text=J'
+                    },
+                    {
+                        id: 3,
+                        fullname: 'Ana Soares',
+                        address: 'Cailaco, Bobonaro',
+                        phone: '77543210',
+                        emis: 'EMIS54321',
+                        course: 'IPA (Ciencias Naturais / CT)',
+                        email: 'ana.soares@email.com',
+                        registrationDate: '18/05/2023',
+                        photo: 'https://placehold.co/100x100/004aad/FFFFFF?text=A'
+                    }
+                ];
+                localStorage.setItem('students', JSON.stringify(demoStudents));
+            }
+            
+            // Atualiza kontador estudante
+            updateStudentCounter();
+        };
+    </script>
+</body>
+</html>
